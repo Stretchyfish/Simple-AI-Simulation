@@ -1,0 +1,8 @@
+This is an explanation, to change settings make sure to clearly write "yes" and "no" with a space before. For numbers make sure to use "." to mark the numbers. 
+Notice, obstacles and map can not both be yes! (both can be no)
+obstacles: no
+Map: yes
+manual control: yes
+Robot speed: 40
+weight1: 0
+weight2: 0

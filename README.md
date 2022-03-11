@@ -3,7 +3,7 @@ This is a program desgined for a workshop, containing a simple simulation of an 
 The program itself is located inside the release folder. 
 
 ## How to use
-To use this program, make sure to be on a windows version that supports x86, go to the folder called Release and find a folder Simulation-XXXX (X marks a version number, take the newest one). Copy that folder to a location on your computer. Inside that folder will be a file called ai-robot (or ai-robot.exe), run that to start the program. In the same folder will be located a text file called settings (or settings.txt), change text in there to make changes to the program, make sure to save and follow the instruction marked on the top.
+To use this program, make sure to be on a windows version that supports x86, find folder Simulation-vX (X marks a version number, take the highest one). Copy that folder to a location on your computer. Inside that folder will be a file called ai-robot (or ai-robot.exe), run that to start the program. In the same folder will be located a text file called settings (or settings.txt), change text in there to make changes to the program, make sure to save and follow the instruction marked on the top.
 
 ## How to modify the code
 The program is made with c++ in windows 11 using the IDE visual studio 2022 and the package manager vcpkg. 

@@ -53,6 +53,7 @@ Robot::Robot()
 
 Robot::Robot(sf::Vector2f _position, float _angle, float w1, float w2, bool _manualControl, int _speed, Obstacles& _obstacles)
 {
+	// Prepare robot
 	manualControl = _manualControl;
 	obs = &_obstacles;
 	speed = _speed;
@@ -68,9 +69,11 @@ Robot::Robot(sf::Vector2f _position, float _angle, float w1, float w2, bool _man
 	this->body.setPosition(this->position);
 	this->body.setRotation(this->currentAngle);
 
+	// Create distance sensors
 	leftRay = Ray(40, -20, this->position, sf::Vector2f(12.5, 25), _obstacles);
 	rightRay = Ray(40, 20, this->position, sf::Vector2f(-12.5, 25), _obstacles);
 
+	// Create perceptron
 	leftMotorPerceptron = Perceptron(w1, w2);
 }
 
@@ -83,15 +86,15 @@ void Robot::Draw(sf::RenderWindow& window)
 
 void Robot::Update(float& deltaTime)
 {
+	// Update robot position and check for collision
 	this->Rotate(currentAngle);
 	this->Move(deltaTime);
-	obs->CheckForCollision(this->position);
 	
-	//std::cout << "Current angle: " << currentAngle << std::endl;
+	// Update ray positions
 	leftRay.Update(this->position, sf::Vector2f(12.5, 25), currentAngle);
 	rightRay.Update(this->position, sf::Vector2f(-12.5, 25), currentAngle);
 
-	// Reset car if out of the field
+	// Reset car if out of the field or hot something
 	sf::Vector2f circleCenter(400, 400);
 	float circleRadius = 400;
 
@@ -111,6 +114,7 @@ void Robot::Input(float &deltaTime)
 	// Perceptron control
 	float motorPower = leftMotorPerceptron.Calculate(leftRay.distanceNorm, rightRay.distanceNorm);
 
+	// If power is 0-0.33 it turns left, 0.33 to 0.66 strait, 0.66-1 right.
 	if (motorPower < 0.33f)
 	{
 		currentAngle -= 90 * deltaTime;
@@ -159,6 +163,7 @@ void Robot::Rotate(float angle)
 
 void Robot::spawn()
 {
+	// Spawn different places depending on map mode
 	if (obs->mapGenerated == true)
 	{
 		this->position = sf::Vector2f(400, 100);	

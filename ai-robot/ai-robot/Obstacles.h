@@ -35,6 +35,7 @@ Obstacles::Obstacles(bool _generateObstacles, bool _generateMap)
 
 	if (_generateObstacles == true)
 	{
+		// Create 10 boxes
 		for (int i = 0; i < 10; i++)
 		{
 			sf::RectangleShape box(sf::Vector2f(width, height));
@@ -56,6 +57,7 @@ Obstacles::Obstacles(bool _generateObstacles, bool _generateMap)
 
 	if (_generateMap == true)
 	{
+		// Create 180 boxes
 		for (int i = 0; i < 188; i++)
 		{
 			sf::RectangleShape box(sf::Vector2f(width, height));
@@ -152,10 +154,6 @@ Obstacles::Obstacles(bool _generateObstacles, bool _generateMap)
 		boxes[index++].setPosition(sf::Vector2f(150, 400));
 		boxes[index++].setPosition(sf::Vector2f(150, 350));
 		boxes[index++].setPosition(sf::Vector2f(150, 300));
-
-
-		//boxes[index++].setPosition(sf::Vector2f(650, 450));
-
 
 		boxes[index++].setPosition(sf::Vector2f(750, 100));
 		boxes[index++].setPosition(sf::Vector2f(750, 600));

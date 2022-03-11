@@ -33,6 +33,7 @@ Ray::Ray(float _distance, float _angle, sf::Vector2f& _robotPosition, sf::Vector
 {
 	obs = &_obstacles;
 
+	// Place distance sensor root and end point
 	distance = _distance;
 	line[0] = sf::Vertex(_robotPosition + _relativePosition);
 	line[1] = sf::Vertex(_robotPosition + _relativePosition + sf::Vector2f(30, 30));
@@ -48,9 +49,11 @@ void Ray::Draw(sf::RenderWindow &window)
 
 void Ray::Update(sf::Vector2f& _robotPosition, sf::Vector2f _relativePosition, float robotAngle)
 {
+	// Update sensor positions
 	line[0].position = sf::Vector2f(_robotPosition.x + (_relativePosition.x * std::cos(deg2rad(robotAngle)) - _relativePosition.y * std::sin(deg2rad(robotAngle))), _robotPosition.y + (_relativePosition.x * std::sin(deg2rad(robotAngle)) + _relativePosition.y * std::cos(deg2rad(robotAngle))));
 	line[1].position = sf::Vector2f(line[0].position.x + (lineRelativePosition.x * std::cos(deg2rad(robotAngle)) - lineRelativePosition.y * std::sin(deg2rad(robotAngle))), line[0].position.y + (lineRelativePosition.x * std::sin(deg2rad(robotAngle)) + lineRelativePosition.y * std::cos(deg2rad(robotAngle))));
 
+	// Create a linear interpolation between the two points to find where there can be a collision
 	for (float t = 0; t <= 1.05; t += 0.1f)
 	{
 		sf::Vector2f checkPoint = line[0].position + t * (line[1].position - line[0].position);

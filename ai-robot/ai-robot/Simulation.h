@@ -43,11 +43,9 @@ Simulation::Simulation()
 
     // Read obstacle parameters
     file >> text; file >> text;
-    std::cout << text << std::endl;
     bool generateObstacles = false;
     if (text == "yes")
     {
-        std::cout << "Is the same" << std::endl;
         generateObstacles = true;
     }
     else if (text != "no")
@@ -57,7 +55,6 @@ Simulation::Simulation()
 
     // Read map parameters
     file >> text; file >> text;
-    std::cout << text << std::endl;
     bool generateMap = false;
     if (text == "yes")
     {
@@ -70,11 +67,9 @@ Simulation::Simulation()
 
     // Read manual parameters
     file >> text; file >> text; file >> text;
-    std::cout << text << std::endl;
     bool manualControl = false;
     if (text == "yes")
     {
-        std::cout << "Map generation is on" << std::endl;
         manualControl = true;
     }
     else if (text != "no")
@@ -89,21 +84,19 @@ Simulation::Simulation()
     // Find weights values
     file >> text; file >> text;
     float w1 = std::stof(text);
-    std::cout << w1 << std::endl;
 
     file >> text; file >> text;
     float w2 = std::stof(text);
-    std::cout << w2 << std::endl;
 
     // Close file again
     file.close();
 
+    // Create obstacles/map
+    obstacles = Obstacles(generateObstacles, generateMap);
+
     // Create robot with a random start position
     srand((int)time(0));
     float robotStartAngle = rand() % 360;
-    obstacles = Obstacles(generateObstacles, generateMap);
-
-    // Create obstacles/map
     robot = Robot(sf::Vector2f(400, 400), robotStartAngle, w1, w2, manualControl, speed, obstacles);
 
     // Create render window

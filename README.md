@@ -19,3 +19,4 @@ Follow the installation guide, and afterwards type in:
 - vcpkg integrate install
 
 Afterwards SFML should be working in visual studio, and you are ready to begin working. 
+
